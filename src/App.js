@@ -8,7 +8,9 @@ import useAuthListener from "./hooks/use-auth-listener";
 import Levels from "./pages/Levels";
 import CreateExerciseMultiChoiceQs from "./pages/Questions/CreateExerciseMultiChoiceQs";
 import CreateExerciseFilling from "./pages/Questions/CreateExerciseFilling";
+import CreateExerciseCardsStudy from "./pages/Questions/CreateExerciseCardsStudy";
 import AnswerExercises from "./pages/Questions/AnswerExercises";
+import AnswerOneExercise from "./pages/Questions/AnswerOneExercise";
 import UserContext from "./context/user";
 import AnswerMusic from "./pages/Questions/AnswerMusic";
 // for test
@@ -52,8 +54,16 @@ function App() {
                   path="/create-exercise-filling"
                   element={<CreateExerciseFilling />}
                 />
+                <Route
+                  path="/create-exercise-cards-study"
+                  element={<CreateExerciseCardsStudy />}
+                />
                 <Route path="/music" element={<AnswerMusic />} />
                 <Route path="/answer-exercises" element={<AnswerExercises />} />
+                <Route
+                  path="/answer-one-exercise"
+                  element={<AnswerOneExercise />}
+                />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />

@@ -27,12 +27,13 @@ export default function AnswerExercises() {
       <div className="navbar justify-content-center">
         <h1>{exercises[selectedExercise].title}</h1>
       </div>
-      {exercises.map(
-        (ex, i) =>
-          i === selectedExercise && (
-            <AnswerQsComponent allQuestions={ex.questions} qType={ex.type} />
-          )
-      )}
+      {exercises &&
+        exercises.map(
+          (ex, i) =>
+            i === selectedExercise && (
+              <AnswerQsComponent allQuestions={ex.questions} qType={ex.type} />
+            )
+        )}
 
       <div className="fixed-bottom mt-auto py-3 bg-light">
         <div className="container">

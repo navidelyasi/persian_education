@@ -1,7 +1,14 @@
 import React from "react";
-import notification2 from "../../sounds/notification-2-125763.mp3";
 import click4 from "../../sounds/click-button-menu-147349.mp3";
 import dynamo from "../../sounds/dynamo-163602.mp3";
+import { animated, useSpring } from "@react-spring/web";
+import { show1style, show2style } from "../../constants/styles";
+import back from "../../icons/skip-start.svg";
+import next from "../../icons/skip-end.svg";
+import {
+  playnotification2,
+  playdynamo,
+} from "../../hooks/handle-sound-effects";
 
 export default function Buttons({
   allItems,
@@ -13,16 +20,10 @@ export default function Buttons({
 }) {
   const numQs = allItems.length;
 
-  function playnotification2() {
-    new Audio(click4).play();
-  }
-
-  function playdynamo() {
-    new Audio(dynamo).play();
-  }
+  const show1 = useSpring(show1style);
 
   return (
-    <>
+    <animated.div style={show1}>
       {allItems.length > 0 && (
         <div
           className={
@@ -42,11 +43,27 @@ export default function Buttons({
               setSelectedItem(selectedItem - 1);
             }}
           >
-            previous {itemType}
+            <img
+              src={back}
+              alt="back"
+              style={
+                itemType === "exercise"
+                  ? { width: "50px", height: "50px", color: "white" }
+                  : { width: "30px", height: "30px", color: "white" }
+              }
+            />
+            {itemType === "exercise" && "previous exercise"}
           </button>
 
-          <button className="btn btn-outline-success" onClick={handleSubmit}>
-            submit
+          <button
+            className="btn btn-outline-success"
+            onClick={() => {
+              if (!allItems[selectedItem].submitted) {
+                handleSubmit();
+              }
+            }}
+          >
+            submit {itemType}
           </button>
 
           {handleHelp && (
@@ -71,10 +88,19 @@ export default function Buttons({
               setSelectedItem(selectedItem + 1);
             }}
           >
-            next {itemType}
+            <img
+              src={next}
+              alt="next"
+              style={
+                itemType === "exercise"
+                  ? { width: "50px", height: "50px", color: "blue" }
+                  : { width: "30px", height: "30px", color: "blue" }
+              }
+            />
+            {itemType === "exercise" && "next exercise"}
           </button>
         </div>
       )}
-    </>
+    </animated.div>
   );
 }

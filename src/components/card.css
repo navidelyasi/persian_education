@@ -1,0 +1,50 @@
+.maincontainer {
+  position: relative;
+  width: 200px;
+  height: 250px;
+}
+
+.thecard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+/* .thecard:hover {
+  transform: rotateY(180deg);
+} */
+
+.thefront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #adff28;
+  color: #333;
+  border-radius: 5%;
+  box-shadow: 20px 20px 5px #e7eaec50;
+  user-select: none;
+}
+
+.theback {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #fafafa;
+  background-color: #ffc728;
+  color: #333;
+  transform: rotateY(180deg);
+  border-radius: 5%;
+  box-shadow: 20px 20px 5px #e7eaec50;
+  user-select: none;
+}
+
+.cardcontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,16 @@
+/* Add this CSS to your stylesheet or CSS module */
+.moving-element {
+  animation: moveAnimation 12s linear infinite; /* 4s for a complete cycle (2s A to B + 2s B to A) */
+}
+
+@keyframes moveAnimation {
+  0% {
+    transform: translateX(0); /* Start from point A */
+  }
+  50% {
+    transform: translateX(1000px); /* Reach point B at 50% */
+  }
+  100% {
+    transform: translateX(0); /* Return to point A at 100% */
+  }
+}

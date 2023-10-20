@@ -63,12 +63,33 @@ export function prepareMultiChoiceQs(questions) {
 export function prepareExercises(exercises) {
   let _exercises = [...exercises];
   _exercises.forEach((exercise, exerciseIndex) => {
-    if (exercise.type === "multi-choice") {
-      _exercises.questions = prepareMultiChoiceQs(exercise.questions);
-    } else if (exercise.type === "filling-text") {
+    if (exercise.type === "filling-text") {
+      console.log("in filling text");
       _exercises.questions = prepareFillingTextQs(exercise.questions);
+    } else {
+      _exercises.questions = prepareMultiChoiceQs(exercise.questions);
     }
   });
 
   return _exercises;
+}
+
+export function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
 }

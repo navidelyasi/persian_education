@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg fill-rule="evenodd" version="1.1" viewBox="0 0 21000 29700" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<defs>
+<filter id="f">
+<feGaussianBlur stdDeviation="173.67333"/>
+</filter>
+<filter id="e">
+<feGaussianBlur stdDeviation="26.59"/>
+</filter>
+<filter id="d">
+<feGaussianBlur stdDeviation="26.59"/>
+</filter>
+<filter id="c">
+<feGaussianBlur stdDeviation="26.59"/>
+</filter>
+<filter id="b">
+<feGaussianBlur stdDeviation="26.994558"/>
+</filter>
+<filter id="a">
+<feGaussianBlur stdDeviation="23.36"/>
+</filter>
+</defs>
+<g>
+<desc>Master slide</desc>
+<g fill="none">
+<rect width="21000" height="29700"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)" filter="url(#f)">
+<desc>Group</desc>
+<g>
+<desc>Group</desc>
+<g>
+<desc>Drawing</desc>
+<g fill="#c0c0c0" fill-opacity=".50196" stroke="#fff" stroke-opacity=".50196">
+<path d="m18477 10403c-542 375-10292 4462-10606 4526 319 266 413 265 633 498 221 233 84 339 208 1026 58 318 49 111 0 641 263-174 9114-4140 9396-4332 257-183 269 12 1440-641 51-452 85-611-60-890-164-299-193-508-489-713l-522-115z"/>
+</g>
+<g fill="none">
+<rect x="7871" y="10403" width="11722" height="6693"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="#c0c0c0" fill-opacity=".50196" stroke="#fff" stroke-opacity=".50196">
+<path d="m6828 15347c-167 72-526 170-983 499-179 110-288 327-489 403-173 68-2375 996-2520 1090s-356 94-383 343c-13 163-61 326 0 482s127 361 314 704c81 142 348 367 507 406 182 45 667-131 825-201s1969-959 2154-995c167-32 337-61 507-59 205-4 335-169 506-235s1378-483 1476-701c71-162 26-902-143-1532 2-167-443-473-443-473l-311-158s-864 360-1017 427z"/>
+</g>
+<g fill="none">
+<rect x="2422" y="14920" width="6354" height="4363"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="none">
+<rect x="2609" y="17556" width="744" height="1595"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="none">
+<rect x="5951" y="15940" width="764" height="1938"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="none">
+<rect x="3668" y="16778" width="1860" height="801"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="none">
+<rect x="3968" y="17267" width="1860" height="801"/>
+</g>
+</g>
+<g>
+<desc>Drawing</desc>
+<g fill="none">
+<rect x="4063" y="17864" width="1860" height="801"/>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(848.53 2086)" stroke="#000" stroke-opacity=".95956">
+<desc>Drawing</desc>
+<g stroke="#000" stroke-opacity=".95956">
+<g fill="#fff">
+<path d="m18052 10097c-542 375-10292 4462-10606 4526 319 266 413 265 633 498 221 233 84 339 208 1026 58 318 49 111 0 641 263-174 9114-4140 9396-4332 257-183 269 12 1440-641 51-452 78.75-879.75-66.25-1158.8-164-299-139.88-304.88-442.12-466.12z" stroke="#000" stroke-opacity=".95956" stroke-width="10"/>
+</g>
+<g fill="none">
+<path d="m18052 10097c-542 375-10120 4347.1-10606 4526 319 266 346.71 92.643 672.77 498 221 233 44.225 339 168.23 1026 58 318 49 111 0 641 263-174 9114-4140 9396-4332 257-183 269 12 1440-641 51-452 103.75-839.12-41.25-1118.1-275.18-581.05-414.84-464.41-1029.8-599.88" fill="none" stroke="#000" stroke-opacity=".95956"/>
+</g>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="#0f0">
+<path d="m8160 14359c174 117 444 186 649 491 219 324-80 243 157 601 696-264 6026-2564 6196-2611 664-190 748-77 855 61 145 194 45 46 170 252 164-66-45 32 286-123 165-76-11-343 2-515 15-163 269-1030 134-1136l-495-382-7954 3362z"/>
+</g>
+<g fill="none" stroke="#000">
+<path d="m8160 14359c174 117 444 186 649 491 219 324-80 243 157 601 696-264 6026-2564 6196-2611 664-190 748-77 855 61 145 194 45 46 170 252 164-66-45 32 286-123 165-76-11-343 2-515 15-163 269-1030 134-1136l-495-382-7954 3362" fill="none"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="#f00">
+<path d="m16893 10650c214 71 388 235 458 400 60 144 65 385 29 543-35 153-120 507.88-93 1049.4-309.88 172.38-404 185-782 395-39-179-10-564.38 5-725.38 16-180 112-402 111-591 2-164 92-205-25-351-101-134-227-116-459-391 214-89 756-329 756-329z"/>
+</g>
+<g fill="none" stroke="#000">
+<path d="m16893 10650c214 71 388 235 458 400 60 144 65 385 29 543-35 153-123.12 901.62-96.125 1055.6-285 169-401 169-779 379-39-179-10-555 5-716 16-180 112-402 111-591 2-164 92-205-25-351-101-134-227-116-459-391 214-89 756-329 756-329" fill="none"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="#00f">
+<path d="m18181 10728c213 231-81 780-142 937-55 148-60 509-34 665-284 103-374 200-725 338-9-163 12-749 67-907 45-416 78-314 40-631-242-359 27-103.62-480-478.62l854.62-393.12z"/>
+</g>
+<g fill="none" stroke="#000">
+<path d="m18181 10728c213 231-81 780-142 937-55 148-60 509-34 665-284 103-374 200-725 338-9-163 12-749 67-907 45-416 78-314 40-631-242-359 27-88-480-463l864-390 410 451" fill="none"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="#00f">
+<path d="m6403 15041c-167 72-526 170-983 499-179 110-288 327-489 403-173 68-2375 996-2520 1090s-356 94-383 343c-13 163-61 326 0 482s127 361 314 704c81 142 348 367 507 406 182 45 667-131 825-201s1969-959 2154-995c167-32 337-61 507-59 205-4 335-169 506-235s1378-483 1476-701c71-162 26-902-143-1532 2-167-443-473-443-473l-311-158s-864 360-1017 427z"/>
+</g>
+<g fill="none" stroke="#000">
+<path d="m6403 15041c-167 72-526 170-983 499-179 110-288 327-489 403-173 68-2375 996-2520 1090s-356 94-383 343c-13 163-61 326 0 482s127 361 314 704c81 142 348 367 507 406 182 45 667-131 825-201s1969-959 2154-995c167-32 337-61 507-59 205-4 335-169 506-235s1378-483 1476-701c71-162 26-902-143-1532 2-167-443-473-443-473l-311-158s-864 360-1017 427" fill="none"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="none" stroke="#09f" stroke-linejoin="round" stroke-width="100">
+<path d="m2184 17250c171 65 347 137 475 283 123 134 151 312 174 483 21 157 59 313 93 469v156l-15 156-32 47" fill="none" filter="url(#a)"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="none" stroke="#00b8ff" stroke-linejoin="round" stroke-width="100">
+<path d="m5526 15634c203 55 306 253 445 390 135 134 156 306 220 468 63 147 111 300 94 470-15 155-6 315-48 468l-32 141" fill="none" filter="url(#b)"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="none" stroke="#00b8ff" stroke-linejoin="round" stroke-width="100">
+<path d="m3243 17272 1859-800" fill="none" filter="url(#e)"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="none" stroke="#00b8ff" stroke-linejoin="round" stroke-width="100">
+<path d="m3543 17761 1859-800" fill="none" filter="url(#d)"/>
+</g>
+</g>
+<g transform="translate(848.53 2086)">
+<desc>Drawing</desc>
+<g fill="none" stroke="#00b8ff" stroke-linejoin="round" stroke-width="100">
+<path d="m3638 18358 1859-800" fill="none" filter="url(#c)"/>
+</g>
+</g>
+<metadata>
+<rdf:RDF>
+<cc:Work>
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+<dc:publisher>
+<cc:Agent rdf:about="http://openclipart.org/">
+<dc:title>Openclipart</dc:title>
+</cc:Agent>
+</dc:publisher>
+<dc:title>Blue marker</dc:title>
+<dc:date>2011-02-27T11:09:39</dc:date>
+<dc:description>Blue Marker</dc:description>
+<dc:source>https://openclipart.org/detail/123469/blue-marker-by-ymai</dc:source>
+<dc:creator>
+<cc:Agent>
+<dc:title>ymai</dc:title>
+</cc:Agent>
+</dc:creator>
+<dc:subject>
+<rdf:Bag>
+<rdf:li>blue</rdf:li>
+<rdf:li>marker</rdf:li>
+</rdf:Bag>
+</dc:subject>
+</cc:Work>
+<cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+<cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+<cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+<cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+</cc:License>
+</rdf:RDF>
+</metadata>
+</svg>

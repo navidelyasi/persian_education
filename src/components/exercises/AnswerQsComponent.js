@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import BodyFillingText from "../questions/filling-text/answer/BodyFillingText";
 import BodyMultiChoice from "../questions/multi-choice/answer/BodyMultiChoice";
+import CardsStudy from "../questions/cards/CardsStudy";
+import CardsAnswer from "../questions/cards/CardsAnswer";
+import DragDropText from "../questions/drag-drop/DragDropText";
 import UserContext from "../../context/user";
 import { useNavigate } from "react-router-dom";
 import AlertSubmit from "../AlertSubmit";
-import Buttons from "../exercises/Buttons";
 import ListQs from "../questions/ListQs";
 import { doSubmitQAnswer } from "../../hooks/handle-questions";
 
@@ -12,11 +14,13 @@ export default function AnswerQsComponent({ allQuestions, qType }) {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState(allQuestions);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const nextQuestionTimeoutRef = useRef(null);
   const [alert, setAlert] = useState({
     alert: false,
     message: "",
   });
   const answerLogId = useRef("");
+
   const user = useContext(UserContext);
   let result = "";
   let score = "";
@@ -40,6 +44,20 @@ export default function AnswerQsComponent({ allQuestions, qType }) {
   // #########################################################################
   const handleSubmit = () => {
     setQuestions(doSubmitQAnswer(questions, selectedQuestion, qType));
+
+    // Clear any previous timeouts
+    if (nextQuestionTimeoutRef.current) {
+      clearTimeout(nextQuestionTimeoutRef.current);
+    }
+
+    // Set a timeout to increment selectedQuestion after # second
+    nextQuestionTimeoutRef.current = setTimeout(() => {
+      if (selectedQuestion === questions.length - 1) {
+        setSelectedQuestion(0);
+      } else {
+        setSelectedQuestion(selectedQuestion + 1);
+      }
+    }, 2000);
   };
 
   // #########################################################################
@@ -93,47 +111,58 @@ export default function AnswerQsComponent({ allQuestions, qType }) {
   // #########################################################################
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <ListQs
-              questions={questions}
-              selectedQuestion={selectedQuestion}
-              setSelectedQuestion={setSelectedQuestion}
-            />
-          </div>
-          <div className="col-10">
-            {qType === "multi-choice" ? (
+      {qType === "cards-study" ? (
+        <CardsStudy questions={questions} />
+      ) : (
+        <>
+          <div className="">
+            {qType === "drag-drop-text" && (
+              <DragDropText
+                questions={questions}
+                setQuestions={setQuestions}
+                selectedQuestion={selectedQuestion}
+                setSelectedQuestion={setSelectedQuestion}
+                handleHelp={handleHelp}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {qType === "multi-choice" && (
               <BodyMultiChoice
                 questions={questions}
                 setQuestions={setQuestions}
                 selectedQuestion={selectedQuestion}
-              />
-            ) : (
-              <BodyFillingText
-                question={questions[selectedQuestion]}
-                questionIndex={selectedQuestion}
-                handleChange={handleChange}
+                setSelectedQuestion={setSelectedQuestion}
+                handleHelp={handleHelp}
+                handleSubmit={handleSubmit}
               />
             )}
-            <div className="m-3">
-              <div className="container">
-                <Buttons
-                  allItems={questions}
-                  itemType="question"
-                  selectedItem={selectedQuestion}
-                  setSelectedItem={setSelectedQuestion}
-                  handleHelp={handleHelp}
-                  handleSubmit={handleSubmit}
-                />
-              </div>
-            </div>
+            {qType === "filling-text" && (
+              <BodyFillingText
+                questions={questions}
+                selectedQuestion={selectedQuestion}
+                handleChange={handleChange}
+                setSelectedQuestion={setSelectedQuestion}
+                handleHelp={handleHelp}
+                handleSubmit={handleSubmit}
+              />
+            )}
+            {qType === "cards-answer" && (
+              <CardsAnswer
+                questions={questions}
+                setQuestions={setQuestions}
+                selectedQuestion={selectedQuestion}
+                setSelectedQuestion={setSelectedQuestion}
+              />
+            )}
           </div>
-        </div>
-      </div>
 
-      {alert.alert && (
-        <AlertSubmit message={alert.message} handleResponse={handleResponse} />
+          {alert.alert && (
+            <AlertSubmit
+              message={alert.message}
+              handleResponse={handleResponse}
+            />
+          )}
+        </>
       )}
     </>
   );

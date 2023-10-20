@@ -1,3 +1,9 @@
+import {
+  playbrightnotification,
+  playwronganswer,
+} from "./handle-sound-effects";
+import Swal from "sweetalert2";
+
 export function doSubmitQAnswer(questions, selectedQuestion, qType) {
   if (qType === "filling-text") {
     let _score = 0;
@@ -11,6 +17,27 @@ export function doSubmitQAnswer(questions, selectedQuestion, qType) {
     let _questions = [...questions];
     if (_questions[selectedQuestion].result.startsWith("-")) {
       _result = _score + _questions[selectedQuestion].result.slice(1);
+
+      const arrResult = _result.split("-");
+      const resultPercent =
+        Math.round((parseInt(arrResult[0]) / parseInt(arrResult[1])) * 100) +
+        "%";
+      console.log("result in percent : ___ ", resultPercent);
+
+      if (parseInt(arrResult[0]) / parseInt(arrResult[1]) > 0.5) {
+        playbrightnotification();
+        Swal.fire(
+          "Good job!",
+          "You answered above 51%  (your score is " + resultPercent + ")"
+        );
+      } else {
+        playwronganswer();
+        Swal.fire(
+          "No",
+          "You answered less than 51%!  (your score is " + resultPercent + ")"
+        );
+      }
+
       _questions[selectedQuestion].result = _result;
       _questions[selectedQuestion].submitted = true;
     }
@@ -24,8 +51,14 @@ export function doSubmitQAnswer(questions, selectedQuestion, qType) {
       _questions[selectedQuestion].choosen
     ) {
       _questions[selectedQuestion].result = 1;
+
+      playbrightnotification();
+      Swal.fire("Good job!", "You selected currect one!");
     } else {
       _questions[selectedQuestion].result = 0;
+
+      playwronganswer();
+      Swal.fire("No", "You selected wrong!");
     }
 
     return _questions;

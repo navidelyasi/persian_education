@@ -3,16 +3,12 @@ import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import { getAllExercises } from "../services/firebaseServices";
 import { prepareExercises } from "../hooks/prepare-qs-for-answering";
+import girl from "../icons/cute-girl.png";
 
-import brightnotification from "../sounds/bright-notifications-151766.mp3";
-import clickButton from "../sounds/click-button-menu-147349.mp3";
-import dynamo from "../sounds/dynamo-163602.mp3";
-import errorcall from "../sounds/error-call-to-attention-129258.mp3";
-import interface12 from "../sounds/interface-124464.mp3";
-import levelpassed from "../sounds/level-passed-143039.mp3";
-import notification2 from "../sounds/notification-2-125763.mp3";
-import notification4 from "../sounds/notification-4-126507.mp3";
-import wronganswer from "../sounds/wrong-answer-126515.mp3";
+import { animated, useSpring } from "@react-spring/web";
+import { show1style, show2style } from "../constants/styles";
+import "../components/card.css";
+import MovingElement from "../components/MovingElement";
 
 export default function Home() {
   const [exercises, setExercises] = useState([]);
@@ -24,7 +20,10 @@ export default function Home() {
   const getExercises = async () => {
     let _exercises = await getAllExercises(level, unit);
     _exercises = prepareExercises(_exercises);
+
+    console.log("from home page , exercises : ___ ", _exercises);
     setExercises(_exercises);
+    apishow2.start(show2style);
     console.log(exercises);
   };
 
@@ -32,10 +31,17 @@ export default function Home() {
     getExercises();
   }, []);
 
+  const show1 = useSpring(show1style);
+
+  const [show2, apishow2] = useSpring(() => {});
+
   return (
-    <>
+    <animated.div style={show1}>
       <NavBar />
       <br /> <hr />
+      <div className="fixed-bottom">
+        <MovingElement />
+      </div>
       <div className="container">
         <div className="row">
           <div className="col clearfix">
@@ -47,6 +53,19 @@ export default function Home() {
                 }}
               >
                 صفحه ویژه برای موزیک
+              </button>
+            </div>
+            <br />
+            <div className="clearfix">
+              <button
+                className="btn btn-outline-success float-end"
+                onClick={() => {
+                  navigate("/create-exercise-cards-study", {
+                    state: { level: "1", unit: "1", number: 5 },
+                  });
+                }}
+              >
+                ساختن کارت های آموزشی
               </button>
             </div>
             <br />
@@ -67,9 +86,9 @@ export default function Home() {
               <button
                 className="btn btn-outline-success float-end"
                 onClick={() => {
-                  navigate("/create-exercise-filling", {
-                    state: { level: "3", unit: "1", number: 1 },
-                  });
+                  // navigate("/create-exercise-filling", {
+                  //   state: { level: "3", unit: "1", number: 1 },
+                  // });
                 }}
               >
                 ساختن سوال های جای خالی در متن
@@ -78,10 +97,18 @@ export default function Home() {
           </div>
           <div className="col">
             {exercises.length > 1 ? (
-              <>
+              <animated.div style={show2}>
                 <ul className="list-group">
                   {exercises.map((exercise, exerciseIndex) => (
-                    <div className="clearfix">
+                    <div
+                      className="clearfix"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        navigate("/answer-one-exercise", {
+                          state: { exercise },
+                        });
+                      }}
+                    >
                       <h4 className="text-primary float-end">
                         .{exercise.unit}
                       </h4>
@@ -97,7 +124,6 @@ export default function Home() {
                 <button
                   className="btn btn-lg btn-outline-success"
                   onClick={() => {
-                    playnotification2();
                     navigate("/answer-exercises", {
                       state: { exercises },
                     });
@@ -105,58 +131,13 @@ export default function Home() {
                 >
                   انجام دادن تمرین ها
                 </button>
-              </>
+              </animated.div>
             ) : (
               <h2>is loading ...</h2>
             )}
           </div>
         </div>
-        <button onClick={playbrightnotification}>brightnotification</button>
-        <br />
-        <button onClick={playclickButton}>clickButton</button>
-        <br />
-        <button onClick={playdynamo}>dynamo</button>
-        <br />
-        <button onClick={playerrorcall}>errorcall</button>
-        <br />
-        <button onClick={playinterface12}>interface12</button>
-        <br />
-        <button onClick={playlevelpassed}>levelpassed</button>
-        <br />
-        <button onClick={playnotification2}>notification2</button>
-        <br />
-        <button onClick={playnotification4}>notification4</button>
-        <br />
-        <button onClick={playwronganswer}>wronganswer</button>
       </div>
-    </>
+    </animated.div>
   );
-
-  function playbrightnotification() {
-    new Audio(brightnotification).play();
-  }
-  function playclickButton() {
-    new Audio(clickButton).play();
-  }
-  function playdynamo() {
-    new Audio(dynamo).play();
-  }
-  function playerrorcall() {
-    new Audio(errorcall).play();
-  }
-  function playinterface12() {
-    new Audio(interface12).play();
-  }
-  function playlevelpassed() {
-    new Audio(levelpassed).play();
-  }
-  function playnotification2() {
-    new Audio(notification2).play();
-  }
-  function playnotification4() {
-    new Audio(notification4).play();
-  }
-  function playwronganswer() {
-    new Audio(wronganswer).play();
-  }
 }
