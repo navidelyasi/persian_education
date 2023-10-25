@@ -1,10 +1,10 @@
 import React from "react";
-import click4 from "../../sounds/click-button-menu-147349.mp3";
-import dynamo from "../../sounds/dynamo-163602.mp3";
+import click4 from "../../data/sounds/click-button-menu-147349.mp3";
+import dynamo from "../../data/sounds/dynamo-163602.mp3";
 import { animated, useSpring } from "@react-spring/web";
-import { show1style, show2style } from "../../constants/styles";
-import back from "../../icons/skip-start.svg";
-import next from "../../icons/skip-end.svg";
+import { show1style, show2style } from "../../data/constants/styles";
+import back from "../../data/icons/skip-start.svg";
+import next from "../../data/icons/skip-end.svg";
 import {
   playnotification2,
   playdynamo,
@@ -55,16 +55,18 @@ export default function Buttons({
             {itemType === "exercise" && "previous exercise"}
           </button>
 
-          <button
-            className="btn btn-outline-success"
-            onClick={() => {
-              if (!allItems[selectedItem].submitted) {
-                handleSubmit();
-              }
-            }}
-          >
-            submit {itemType}
-          </button>
+          {handleSubmit && (
+            <button
+              className="btn btn-outline-success"
+              onClick={() => {
+                if (!allItems[selectedItem].submitted) {
+                  handleSubmit();
+                }
+              }}
+            >
+              submit {itemType}
+            </button>
+          )}
 
           {handleHelp && (
             <button

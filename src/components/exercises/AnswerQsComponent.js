@@ -1,29 +1,16 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import BodyFillingText from "../questions/filling-text/answer/BodyFillingText";
+import BodyListening from "../questions/listening/BodyListening";
 import BodyMultiChoice from "../questions/multi-choice/answer/BodyMultiChoice";
 import CardsStudy from "../questions/cards/CardsStudy";
 import CardsAnswer from "../questions/cards/CardsAnswer";
 import DragDropText from "../questions/drag-drop/DragDropText";
-import UserContext from "../../context/user";
-import { useNavigate } from "react-router-dom";
-import AlertSubmit from "../AlertSubmit";
-import ListQs from "../questions/ListQs";
 import { doSubmitQAnswer } from "../../hooks/handle-questions";
 
 export default function AnswerQsComponent({ allQuestions, qType }) {
-  const navigate = useNavigate();
   const [questions, setQuestions] = useState(allQuestions);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const nextQuestionTimeoutRef = useRef(null);
-  const [alert, setAlert] = useState({
-    alert: false,
-    message: "",
-  });
-  const answerLogId = useRef("");
-
-  const user = useContext(UserContext);
-  let result = "";
-  let score = "";
 
   // #########################################################################
   // ##################          handle help              ####################
@@ -70,39 +57,12 @@ export default function AnswerQsComponent({ allQuestions, qType }) {
   };
 
   // #########################################################################
-  // ##################              handle Submit all         ###############
-  // #########################################################################
-  const handleSubmitAll = (_result, _score, text) => {
-    result = _result;
-    score = _score;
-    setAlert({ alert: true, message: text });
-    console.log("done :) ");
-  };
-
-  const handleResponse = (r) => {
-    if (r === "yes") {
-      console.log("user says yes");
-      navigate("/");
-      // updateAnswerLog(answerLogId.current, result, score);
-    } else {
-      console.log("user says no");
-    }
-    setAlert({ alert: false, message: "" });
-  };
-
-  // #########################################################################
   // ##################              use Effect               ################
   // #########################################################################
   useEffect(() => {
     if (questions.length > 1) {
       let qsIds = [];
       questions.forEach((q) => qsIds.push(q.docId));
-      // insertNewAnswerLog(
-      //   user.uid,
-      //   questions[0].level + "-" + questions[0].unit,
-      //   "filling-text",
-      //   qsIds
-      // ).then((r) => (answerLogId.current = r));
     }
   }, []);
 
@@ -111,58 +71,51 @@ export default function AnswerQsComponent({ allQuestions, qType }) {
   // #########################################################################
   return (
     <>
-      {qType === "cards-study" ? (
-        <CardsStudy questions={questions} />
-      ) : (
-        <>
-          <div className="">
-            {qType === "drag-drop-text" && (
-              <DragDropText
-                questions={questions}
-                setQuestions={setQuestions}
-                selectedQuestion={selectedQuestion}
-                setSelectedQuestion={setSelectedQuestion}
-                handleHelp={handleHelp}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {qType === "multi-choice" && (
-              <BodyMultiChoice
-                questions={questions}
-                setQuestions={setQuestions}
-                selectedQuestion={selectedQuestion}
-                setSelectedQuestion={setSelectedQuestion}
-                handleHelp={handleHelp}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {qType === "filling-text" && (
-              <BodyFillingText
-                questions={questions}
-                selectedQuestion={selectedQuestion}
-                handleChange={handleChange}
-                setSelectedQuestion={setSelectedQuestion}
-                handleHelp={handleHelp}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {qType === "cards-answer" && (
-              <CardsAnswer
-                questions={questions}
-                setQuestions={setQuestions}
-                selectedQuestion={selectedQuestion}
-                setSelectedQuestion={setSelectedQuestion}
-              />
-            )}
-          </div>
-
-          {alert.alert && (
-            <AlertSubmit
-              message={alert.message}
-              handleResponse={handleResponse}
-            />
-          )}
-        </>
+      {qType === "cards-study" && <CardsStudy questions={questions} />}
+      {qType === "drag-drop-text" && (
+        <DragDropText
+          questions={questions}
+          setQuestions={setQuestions}
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
+          handleHelp={handleHelp}
+          handleSubmit={handleSubmit}
+        />
+      )}
+      {qType === "multi-choice" && (
+        <BodyMultiChoice
+          questions={questions}
+          setQuestions={setQuestions}
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
+          handleHelp={handleHelp}
+          handleSubmit={handleSubmit}
+        />
+      )}
+      {qType === "filling-text" && (
+        <BodyFillingText
+          questions={questions}
+          selectedQuestion={selectedQuestion}
+          handleChange={handleChange}
+          setSelectedQuestion={setSelectedQuestion}
+          handleHelp={handleHelp}
+          handleSubmit={handleSubmit}
+        />
+      )}
+      {qType === "listening" && (
+        <BodyListening
+          questions={questions}
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
+        />
+      )}
+      {qType === "cards-answer" && (
+        <CardsAnswer
+          questions={questions}
+          setQuestions={setQuestions}
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
+        />
       )}
     </>
   );

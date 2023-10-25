@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import LimitedNavBar from "../../components/LimitedNavBar";
+import LimitedNavBar from "../../components/general/LimitedNavBar";
 import { useLocation } from "react-router-dom";
 import Buttons from "../../components/exercises/Buttons";
 import AnswerQsComponent from "../../components/exercises/AnswerQsComponent";
@@ -8,7 +9,10 @@ import AnswerQsComponent from "../../components/exercises/AnswerQsComponent";
 export default function AnswerExercises() {
   const location = useLocation();
   const [exercises, setExercises] = useState(location.state.exercises);
-  const [selectedExercise, setSelectedExercise] = useState(0);
+  const [selectedExercise, setSelectedExercise] = useState(
+    location.state.exerciseIndex ? location.state.exerciseIndex : 0
+  );
+  const navigate = useNavigate();
 
   const percent = Math.round((selectedExercise / exercises.length) * 100);
   let percentwidth = percent + "%";
@@ -47,8 +51,13 @@ export default function AnswerExercises() {
               />
               <hr />
               <div className="w-100 btn-group">
-                <button className="btn btn-success">
-                  submit all exercises and go back to home
+                <button
+                  className="btn btn-success"
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  submit all exercises and go back to level 1 page
                 </button>
               </div>
             </div>

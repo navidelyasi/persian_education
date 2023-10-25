@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/general/NavBar";
 import { useNavigate } from "react-router-dom";
 
 // ############################################################
 // ####################    constants     ######################
 // ############################################################
-// const levels = ["1", "2"];
 const levelsUnits = [
   { name: "1", units: ["1", "2", "3"] },
   { name: "2", units: ["1", "2"] },
 ];
 
-export default function Levels() {
+export default function Level2() {
   const navigate = useNavigate();
   const [selectedLevel, setSelectedLevel] = useState("0");
   const [selectedUnit, setSelectedUnit] = useState("0");

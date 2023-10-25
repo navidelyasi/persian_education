@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import girl from "../icons/cute-girl.png";
-import "./moving.css";
+import girl from "../../data/icons/cute-girl.png";
+import "../css/moving.css";
 
 const MovingElement = () => {
   return (
@@ -9,5 +9,4 @@ const MovingElement = () => {
     </div>
   );
 };
-
 export default MovingElement;

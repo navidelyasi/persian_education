@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSpring, animated } from "@react-spring/web";
-import { show2style } from "../../../../constants/styles";
+import { show2style } from "../../../../data/constants/styles";
 import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
 
@@ -13,8 +13,6 @@ export default function BodyFillingText({
   handleHelp,
   handleSubmit,
 }) {
-  const [help, setHelp] = useState(false);
-
   const show2 = useSpring(show2style);
   const [show3, apishow3] = useSpring(() => {});
 
@@ -25,26 +23,6 @@ export default function BodyFillingText({
       config: { duration: 1000 },
     });
   }
-
-  // const hhelp = () => {
-  //   if (help) {
-  //     setHelp(false);
-  //     apishow3.start({
-  //       from: { opacity: 1 },
-  //       to: { opacity: 0 },
-  //       config: { duration: 1000 },
-  //     });
-  //   } else {
-  //     setHelp(true);
-  //     apishow3.start({
-  //       from: { opacity: 0 },
-  //       to: { opacity: 1 },
-  //       config: { duration: 1000 },
-  //     });
-  //   }
-  // };
-
-  console.log("questions from body filling text ___ : ", questions);
 
   return (
     <>

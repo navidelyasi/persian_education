@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import "../../card.css";
+import "../../css/card.css";
 import { playinterface12 } from "../../../hooks/handle-sound-effects";
 
 export default function CardsStudy({ questions }) {
   const [rotates, setRotates] = useState(questions.map((q) => 0));
 
   const sources = questions.map((q) =>
-    require(`../../../icons/unit11/${q.name1}.png`)
+    require(`../../../data/icons/unit11/${q.name1}.png`)
   );
 
-  // console.log("Questions are (from CardsStudy) : ", questions);
-  // console.log("rotates  is (from CardsStudy) : ", rotates);
-
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row row-cols-1 row-cols-sm-1 row-cols.md-2 row-cols-lg-auto g-4">
         {questions.map((q, i) => (
           <div className="col" key={q.name1}>
@@ -43,31 +40,6 @@ export default function CardsStudy({ questions }) {
             </div>
           </div>
         ))}
-
-        {/* <div className="col">
-          <div className="maincontainer">
-            <div
-              className="thecard"
-              style={{ transform: `rotateY(${rotate}deg)` }}
-              onClick={() => {
-                setRotate(rotate + 180);
-                playinterface12();
-              }}
-            >
-              <div className="thefront cardcontent">
-                <img
-                  src={require("../../../icons/unit11/bag.png")}
-                  alt="atash"
-                  style={{ width: "200px", height: "200px" }}
-                />
-              </div>
-
-              <div className="theback cardcontent">
-                <p style={{ fontSize: "50px" }}>آتش</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/general/NavBar";
 import { useNavigate } from "react-router-dom";
-import { getAllExercises } from "../../services/firebaseServices";
+import { getAllExercises } from "../../hooks/firebaseServices";
 import { prepareExercises } from "../../hooks/prepare-qs-for-answering";
 import { v4 as uuidv4 } from "uuid";
 import Buttons from "../../components/exercises/Buttons";
 import { doSubmitQAnswer } from "../../hooks/handle-questions";
-import habibi from "../../musics/habibi.mp3";
-import Player from "../../components/Player";
+import habibi from "../../data/musics/habibi.mp3";
+import Player from "../../components/general/Player";
 
 export default function AnswerMusic() {
   const [questions, setQuestions] = useState([]);
@@ -65,16 +65,10 @@ export default function AnswerMusic() {
     }
   }, [isPlaying]);
 
-  console.log("questions are : ", questions);
-
   const onPlaying = () => {
     const duration = audioElement.current.duration;
     const currentTime = audioElement.current.currentTime;
-
-    // console.log("current is : ", currentTime);
-
     updatecurrentHighlightedLine(currentTime);
-
     setCurrentSong({
       progress: (currentTime / duration) * 100,
       length: duration,

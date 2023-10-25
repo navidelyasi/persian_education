@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
-import { show2style } from "../../../../constants/styles";
+import { show2style } from "../../../../data/constants/styles";
 import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
-
-// import { show1 } from "../../../../constants/styles";
 
 export default function BodyMultiChoice({
   questions,

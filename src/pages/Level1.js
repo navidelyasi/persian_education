@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/general/NavBar";
 import { useNavigate } from "react-router-dom";
-import { getAllExercises } from "../services/firebaseServices";
+import { getAllExercises } from "../hooks/firebaseServices";
 import { prepareExercises } from "../hooks/prepare-qs-for-answering";
-import girl from "../icons/cute-girl.png";
+import girl from "../data/icons/cute-girl.png";
 
 import { animated, useSpring } from "@react-spring/web";
-import { show1style, show2style } from "../constants/styles";
-import "../components/card.css";
-import MovingElement from "../components/MovingElement";
+import { show1style, show2style } from "../data/constants/styles";
+import "../components/css/card.css";
+import MovingElement from "../components/general/MovingElement";
 
-export default function Home() {
+export default function Level1() {
   const [exercises, setExercises] = useState([]);
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function Home() {
     let _exercises = await getAllExercises(level, unit);
     _exercises = prepareExercises(_exercises);
 
-    console.log("from home page , exercises : ___ ", _exercises);
+    console.log("from home Level 1 page , exercises : ___ ", _exercises);
     setExercises(_exercises);
     apishow2.start(show2style);
     console.log(exercises);
@@ -48,6 +48,7 @@ export default function Home() {
             <div className="clearfix">
               <button
                 className="btn btn-outline-success float-end"
+                style={{ fontSize: "22px" }}
                 onClick={() => {
                   navigate("/music");
                 }}
@@ -59,6 +60,7 @@ export default function Home() {
             <div className="clearfix">
               <button
                 className="btn btn-outline-success float-end"
+                style={{ fontSize: "22px" }}
                 onClick={() => {
                   navigate("/create-exercise-cards-study", {
                     state: { level: "1", unit: "1", number: 5 },
@@ -72,6 +74,7 @@ export default function Home() {
             <div className="clearfix">
               <button
                 className="btn btn-outline-success float-end"
+                style={{ fontSize: "22px" }}
                 onClick={() => {
                   // navigate("/create-exercise-multi", {
                   //   state: { level: "1", unit: "1", number: 5 },
@@ -85,9 +88,10 @@ export default function Home() {
             <div className="clearfix">
               <button
                 className="btn btn-outline-success float-end"
+                style={{ fontSize: "22px" }}
                 onClick={() => {
                   // navigate("/create-exercise-filling", {
-                  //   state: { level: "3", unit: "1", number: 1 },
+                  //   state: { level: "1", unit: "1", number: 6 },
                   // });
                 }}
               >
@@ -96,33 +100,34 @@ export default function Home() {
             </div>
           </div>
           <div className="col">
-            {exercises.length > 1 ? (
+            {exercises.length > 0 ? (
               <animated.div style={show2}>
                 <ul className="list-group">
                   {exercises.map((exercise, exerciseIndex) => (
                     <div
                       className="clearfix"
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer", fontSize: "22px" }}
                       onClick={() => {
-                        navigate("/answer-one-exercise", {
-                          state: { exercise },
+                        navigate("/answer-exercises", {
+                          state: { exercises, exerciseIndex },
                         });
                       }}
                     >
-                      <h4 className="text-primary float-end">
+                      <h2 className="text-primary float-end">
                         .{exercise.unit}
-                      </h4>
-                      <h4 className="text-primary float-end">
+                      </h2>
+                      <h2 className="text-primary float-end">
                         .{exercise.number}
-                      </h4>
-                      <h4 className="float-end" key={exerciseIndex}>
+                      </h2>
+                      <h2 className="float-end" key={exerciseIndex}>
                         {exercise.title}
-                      </h4>
+                      </h2>
                     </div>
                   ))}
                 </ul>
                 <button
                   className="btn btn-lg btn-outline-success"
+                  style={{ fontSize: "22px" }}
                   onClick={() => {
                     navigate("/answer-exercises", {
                       state: { exercises },

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { shuffle } from "../../../hooks/prepare-qs-for-answering";
 import { animated, useSpring } from "@react-spring/web";
-import { show2style, show1style } from "../../../constants/styles";
+import { show2style, show1style } from "../../../data/constants/styles";
 import Swal from "sweetalert2";
 import {
   playbrightnotification,

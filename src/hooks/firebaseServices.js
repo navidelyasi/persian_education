@@ -1,4 +1,4 @@
-import { firestore } from "../lib/firebase";
+import { firestore } from "../database/firebase";
 import {
   doc,
   collection,

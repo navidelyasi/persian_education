@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/general/NavBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import MultiChoiceQ from "../../components/questions/multi-choice/MultiChoiceQ";
 import MultiChoiceQList from "../../components/questions/multi-choice/MultiChoiceQList";
-import { insertExercise } from "../../services/firebaseServices";
+import { insertExercise } from "../../hooks/firebaseServices";
 let counter = 0;
 
-export default function CreateExerciseCardsStudy() {
+export default function CreateExerciseCards() {
   const location = useLocation();
   const navigate = useNavigate();
   const level = location.state.level;

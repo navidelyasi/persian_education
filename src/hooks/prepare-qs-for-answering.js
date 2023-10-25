@@ -59,13 +59,28 @@ export function prepareMultiChoiceQs(questions) {
 
   return _allQuestions;
 }
+export function prepareListening(questions) {
+  let _allQuestions = [...questions];
+  if (_allQuestions) {
+    _allQuestions.forEach((question, questionIndex) => {
+      let _body = question.body.split("\n");
+      _allQuestions[questionIndex].body = _body;
+      _allQuestions[questionIndex].submitted = false;
+      _allQuestions[questionIndex].helped = false;
+    });
+  }
+
+  return _allQuestions;
+}
 
 export function prepareExercises(exercises) {
   let _exercises = [...exercises];
   _exercises.forEach((exercise, exerciseIndex) => {
     if (exercise.type === "filling-text") {
-      console.log("in filling text");
       _exercises.questions = prepareFillingTextQs(exercise.questions);
+    } else if (exercise.type === "listening") {
+      console.log("in listening");
+      _exercises.questions = prepareListening(exercise.questions);
     } else {
       _exercises.questions = prepareMultiChoiceQs(exercise.questions);
     }

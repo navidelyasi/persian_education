@@ -1,15 +1,15 @@
 import React, { useRef } from "react";
-import musicIcon from "../icons/file-music.svg";
-import pause from "../icons/pause-circle.svg";
-import play from "../icons/play-circle.svg";
-import back from "../icons/skip-start.svg";
-import next from "../icons/skip-end.svg";
-import sec15for from "../icons/sec_15_forward.svg";
-import sec15back from "../icons/sec_15_backward.svg";
-import sec30for from "../icons/sec_30_forward.svg";
-import sec30back from "../icons/sec_30_backward.svg";
+import musicIcon from "../../data/icons/file-music.svg";
+import pause from "../../data/icons/pause-circle.svg";
+import play from "../../data/icons/play-circle.svg";
+import back from "../../data/icons/skip-start.svg";
+import next from "../../data/icons/skip-end.svg";
+import sec15for from "../../data/icons/sec_15_forward.svg";
+import sec15back from "../../data/icons/sec_15_backward.svg";
+import sec30for from "../../data/icons/sec_30_forward.svg";
+import sec30back from "../../data/icons/sec_30_backward.svg";
 
-import "./player.css";
+import "../css/player.css";
 
 export default function Player({
   audioElement,

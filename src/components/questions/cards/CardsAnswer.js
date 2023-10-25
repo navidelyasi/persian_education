@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
-import { show2style, show1style } from "../../../constants/styles";
+import { show2style } from "../../../data/constants/styles";
 import ListQs from "../ListQs";
 
-import "../../card.css";
+import "../../css/card.css";
 import {
   playbrightnotification,
   playinterface12,
@@ -28,7 +28,7 @@ export default function CardsAnswer({
         ...questions[selectedQuestion],
         index: selectedQuestion,
         rotate: 0,
-        source: require(`../../../icons/unit11/${questions[selectedQuestion].name1}.png`),
+        source: require(`../../../data/icons/unit11/${questions[selectedQuestion].name1}.png`),
       },
     ];
     for (let i = 1; i < 4; i++) {
@@ -47,7 +47,7 @@ export default function CardsAnswer({
             ...questions[myRand],
             index: myRand,
             rotate: 0,
-            source: require(`../../../icons/unit11/${questions[myRand].name1}.png`),
+            source: require(`../../../data/icons/unit11/${questions[myRand].name1}.png`),
           });
         }
       }

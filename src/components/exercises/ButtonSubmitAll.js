@@ -61,7 +61,7 @@ export default function ButtonSubmitAll({ questions, handleSubmitAll }) {
   // #########################################################################
   return (
     <button onClick={() => onSubmitAll()} className="btn btn-success">
-      submit all answers and go back to home
+      submit all answers and go back to level 1 page
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
-import { show1style } from "../../constants/styles";
+import { show1style } from "../../data/constants/styles";
 
 export default function ListQs({
   questions,

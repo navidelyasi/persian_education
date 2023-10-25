@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/general/NavBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import FillingTextQList from "../../components/questions/filling-text/question/FillingTextQList";
 import FillingTextQ from "../../components/questions/filling-text/question/FillingTextQ";
-import { insertExercise } from "../../services/firebaseServices";
+import { insertExercise } from "../../hooks/firebaseServices";
 let count = 0;
 export default function CreateExerciseFilling() {
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ export default function CreateExerciseFilling() {
       level,
       unit,
       number,
-      type: "filling-text",
-      title: "forth exercise title and again it can be too long",
+      type: "listening",
+      title: "گوش گنید و تکرار گنید",
       questions,
     };
     console.log("exercise is ", exercise);

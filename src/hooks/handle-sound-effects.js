@@ -1,12 +1,12 @@
-import brightnotification from "../sounds/bright-notifications-151766.mp3";
-import clickButton from "../sounds/click-button-menu-147349.mp3";
-import dynamo from "../sounds/dynamo-163602.mp3";
-import errorcall from "../sounds/error-call-to-attention-129258.mp3";
-import interface12 from "../sounds/interface-124464.mp3";
-import levelpassed from "../sounds/level-passed-143039.mp3";
-import notification2 from "../sounds/notification-2-125763.mp3";
-import notification4 from "../sounds/notification-4-126507.mp3";
-import wronganswer from "../sounds/wrong-answer-126515.mp3";
+import brightnotification from "../data/sounds/bright-notifications-151766.mp3";
+import clickButton from "../data/sounds/click-button-menu-147349.mp3";
+import dynamo from "../data/sounds/dynamo-163602.mp3";
+import errorcall from "../data/sounds/error-call-to-attention-129258.mp3";
+import interface12 from "../data/sounds/interface-124464.mp3";
+import levelpassed from "../data/sounds/level-passed-143039.mp3";
+import notification2 from "../data/sounds/notification-2-125763.mp3";
+import notification4 from "../data/sounds/notification-4-126507.mp3";
+import wronganswer from "../data/sounds/wrong-answer-126515.mp3";
 
 export function playbrightnotification() {
   const myAudio = new Audio(brightnotification);

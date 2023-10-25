@@ -9,7 +9,7 @@ import {
   setDoc,
   getDocs,
 } from "firebase/firestore";
-import { auth, firestore } from "../lib/firebase";
+import { auth, firestore } from "../database/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export default function Signup() {
