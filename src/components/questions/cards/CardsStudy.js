@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "../../css/card.css";
 import { playinterface12 } from "../../../hooks/handle-sound-effects";
+import { exerciseStore } from "../../../database/exercise-store";
 
-export default function CardsStudy({ questions }) {
+export default function CardsStudy() {
+  const { data, index } = exerciseStore();
+  const questions = data[index].questions;
+
   const [rotates, setRotates] = useState(questions.map((q) => 0));
 
   const sources = questions.map((q) =>

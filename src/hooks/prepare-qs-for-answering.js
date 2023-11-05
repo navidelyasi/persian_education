@@ -79,7 +79,6 @@ export function prepareExercises(exercises) {
     if (exercise.type === "filling-text") {
       _exercises.questions = prepareFillingTextQs(exercise.questions);
     } else if (exercise.type === "listening") {
-      console.log("in listening");
       _exercises.questions = prepareListening(exercise.questions);
     } else {
       _exercises.questions = prepareMultiChoiceQs(exercise.questions);

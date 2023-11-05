@@ -1,108 +1,107 @@
-import React from "react";
-import click4 from "../../data/sounds/click-button-menu-147349.mp3";
-import dynamo from "../../data/sounds/dynamo-163602.mp3";
+import React, { useRef } from "react";
 import { animated, useSpring } from "@react-spring/web";
-import { show1style, show2style } from "../../data/constants/styles";
+import { show1style } from "../../data/constants/styles";
 import back from "../../data/icons/skip-start.svg";
 import next from "../../data/icons/skip-end.svg";
+import { exerciseStore } from "../../database/exercise-store";
 import {
   playnotification2,
   playdynamo,
 } from "../../hooks/handle-sound-effects";
+import { doSubmitQAnswer } from "../../hooks/handle-questions";
 
-export default function Buttons({
-  allItems,
-  itemType,
-  selectedItem,
-  setSelectedItem,
-  handleHelp,
-  handleSubmit,
-}) {
-  const numQs = allItems.length;
+export default function Buttons({ handleHelp }) {
+  const { data, index, qindex, setQIndex, setExercises } = exerciseStore();
+  const nextQuestionTimeoutRef = useRef(null);
+  const questions = data[index].questions;
+
+  const handleSubmit = () => {
+    let _data = [...data];
+    _data[index].questions = doSubmitQAnswer(
+      data[index].questions,
+      qindex,
+      data[index].type
+    );
+    setExercises(_data);
+
+    if (nextQuestionTimeoutRef.current) {
+      clearTimeout(nextQuestionTimeoutRef.current);
+    }
+    nextQuestionTimeoutRef.current = setTimeout(() => {
+      if (qindex === questions.length - 1) {
+        setQIndex(0);
+      } else {
+        setQIndex(qindex + 1);
+      }
+    }, 1500);
+  };
 
   const show1 = useSpring(show1style);
 
   return (
     <animated.div style={show1}>
-      {allItems.length > 0 && (
-        <div
-          className={
-            itemType === "question"
-              ? "w-75 btn-group btn-group-sm mx-auto"
-              : "w-100 btn-group"
-          }
-        >
+      <div className="w-75 btn-group btn-group-sm mx-auto">
+        {questions.length > 1 && (
           <button
             className={
-              selectedItem > 0
+              qindex > 0
                 ? "btn btn-outline-primary"
                 : "btn btn-outline-primary disabled"
             }
             onClick={() => {
               playnotification2();
-              setSelectedItem(selectedItem - 1);
+              setQIndex(qindex - 1);
             }}
           >
             <img
               src={back}
               alt="back"
-              style={
-                itemType === "exercise"
-                  ? { width: "50px", height: "50px", color: "white" }
-                  : { width: "30px", height: "30px", color: "white" }
-              }
+              style={{ width: "30px", height: "30px", color: "white" }}
             />
-            {itemType === "exercise" && "previous exercise"}
           </button>
+        )}
+        <button
+          className="btn btn-outline-success"
+          onClick={() => {
+            if (!data[index].questions[qindex].submitted) {
+              handleSubmit();
+            }
+          }}
+        >
+          submit question
+        </button>
 
-          {handleSubmit && (
-            <button
-              className="btn btn-outline-success"
-              onClick={() => {
-                if (!allItems[selectedItem].submitted) {
-                  handleSubmit();
-                }
-              }}
-            >
-              submit {itemType}
-            </button>
-          )}
-
-          {handleHelp && (
-            <button
-              className="btn btn-outline-secondary"
-              onClick={() => {
-                playdynamo();
-                handleHelp();
-              }}
-            >
-              help
-            </button>
-          )}
+        {handleHelp && (
+          <button
+            className="btn btn-outline-secondary"
+            onClick={() => {
+              playdynamo();
+              handleHelp();
+            }}
+          >
+            help
+          </button>
+        )}
+        {questions.length > 1 && (
           <button
             className={
-              selectedItem < numQs - 1
+              qindex < questions.length - 1
                 ? "btn btn-outline-primary"
                 : "btn btn-outline-primary disabled"
             }
             onClick={() => {
               playnotification2();
-              setSelectedItem(selectedItem + 1);
+              setQIndex(qindex + 1);
             }}
           >
             <img
               src={next}
               alt="next"
-              style={
-                itemType === "exercise"
-                  ? { width: "50px", height: "50px", color: "blue" }
-                  : { width: "30px", height: "30px", color: "blue" }
-              }
+              style={{ width: "30px", height: "30px", color: "blue" }}
             />
-            {itemType === "exercise" && "next exercise"}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </animated.div>
   );
 }

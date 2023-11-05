@@ -1,12 +1,12 @@
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { show1style } from "../../data/constants/styles";
+import { exerciseStore } from "../../database/exercise-store";
 
-export default function ListQs({
-  questions,
-  selectedQuestion,
-  setSelectedQuestion,
-}) {
+export default function ListQs() {
+  const { data, index, qindex, setQIndex } = exerciseStore();
+  const questions = data[index].questions;
+
   const show1 = useSpring(show1style);
 
   return (
@@ -21,19 +21,16 @@ export default function ListQs({
         <tbody>
           {questions.length > 0 &&
             questions.map((val, i) => (
-              <tr
-                key={i}
-                className={i === selectedQuestion ? "table-primary" : ""}
-              >
+              <tr key={i} className={i === qindex ? "table-primary" : ""}>
                 <td>
                   <button
                     key={"question_" + i}
                     className={
-                      i === selectedQuestion
+                      i === qindex
                         ? "btn btn-sm btn-outline-primary active"
                         : "btn btn-sm btn-outline-primary"
                     }
-                    onClick={() => setSelectedQuestion(i)}
+                    onClick={() => setQIndex(i)}
                   >
                     Question : {i + 1}
                   </button>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { shuffle } from "../../../hooks/prepare-qs-for-answering";
 import { animated, useSpring } from "@react-spring/web";
@@ -9,42 +9,37 @@ import {
   playinterface12,
   playwronganswer,
 } from "../../../hooks/handle-sound-effects";
+import { exerciseStore } from "../../../database/exercise-store";
 
-export default function DragDropText({
-  questions,
-  setQuestions,
-  selectedQuestion,
-  setSelectedQuestion,
-}) {
-  console.log("questions are : ___ ", questions);
+export default function DragDropText() {
+  const { data, index, setExercises, dragableItems, setDragableItems } =
+    exerciseStore();
+  const questions = data[index].questions;
   const nextQuestionTimeoutRef = useRef(null);
-  const [list1, updateList1] = useState([]);
 
   function handleDragEnd(result) {
-    console.log("the result of drop action : ___ ", result);
-
     if (!result.destination) return;
-    const items = Array.from(list1);
+    const items = Array.from(dragableItems);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    updateList1(items);
+    setDragableItems(items);
   }
 
   const checkAnswers = () => {
     let _q = [...questions];
     _q.map((q, i) => {
       q.submitted = true;
-      if (q.name2 === list1[i].name2) {
+      if (q.name2 === dragableItems[i].name2) {
         q.score = 1;
       } else {
         q.score = 0;
       }
     });
-    setQuestions(_q);
+    let _exercises = data;
+    _exercises[index].questions = _q;
+    setExercises(_exercises);
 
     playinterface12();
-
-    // Clear any previous timeouts
     if (nextQuestionTimeoutRef.current) {
       clearTimeout(nextQuestionTimeoutRef.current);
     }
@@ -67,10 +62,14 @@ export default function DragDropText({
   };
 
   useEffect(() => {
+    let _data = [...data];
+    _data[index].questions.map((q) => {
+      q.submitted = false;
+    });
+    setExercises(_data);
     let _q = [...questions];
-    console.log("questions are ", questions);
     _q = shuffle(_q);
-    updateList1(_q);
+    setDragableItems(_q);
   }, []);
 
   const show1 = useSpring(show1style);
@@ -94,8 +93,8 @@ export default function DragDropText({
                     ref={provided.innerRef}
                   >
                     <tbody>
-                      {list1.length > 0 &&
-                        list1.map((item, index) => {
+                      {dragableItems.length > 0 &&
+                        dragableItems.map((item, index) => {
                           return (
                             <Draggable
                               key={item.name2}
@@ -141,7 +140,7 @@ export default function DragDropText({
           <animated.div style={show1}>
             <table className="table">
               <tbody>
-                {questions.map((item) => (
+                {questions.map((item, i) => (
                   <tr className="card" key={item.name1}>
                     <div
                       className={
@@ -163,7 +162,7 @@ export default function DragDropText({
           </animated.div>
         </div>
         <div className="row">
-          <button className="btn btn-primary" onClick={checkAnswers}>
+          <button className="btn btn-outline-success" onClick={checkAnswers}>
             check answers
           </button>
         </div>

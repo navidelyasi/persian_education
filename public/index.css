@@ -1,0 +1,11 @@
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 100;
+  src: url("Webfonts/fonts/woff/IRANSansX-thin.woff") format("woff"),
+    url("Webfonts/fonts/woff2/IRANSansX-thin.woff2") format("woff2");
+}
+
+html * {
+  font-family: IRANSansX;
+}

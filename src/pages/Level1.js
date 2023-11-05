@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/general/NavBar";
 import { useNavigate } from "react-router-dom";
-import { getAllExercises } from "../hooks/firebaseServices";
-import { prepareExercises } from "../hooks/prepare-qs-for-answering";
-import girl from "../data/icons/cute-girl.png";
-
+import { exerciseStore } from "../database/exercise-store";
 import { animated, useSpring } from "@react-spring/web";
-import { show1style, show2style } from "../data/constants/styles";
+import { show1style } from "../data/constants/styles";
 import "../components/css/card.css";
 import MovingElement from "../components/general/MovingElement";
 
-export default function Level1() {
-  const [exercises, setExercises] = useState([]);
+function Level1() {
+  const { data, getExercises, setIndex } = exerciseStore();
   const navigate = useNavigate();
-
-  const level = "1";
-  const unit = "1";
-
-  const getExercises = async () => {
-    let _exercises = await getAllExercises(level, unit);
-    _exercises = prepareExercises(_exercises);
-
-    console.log("from home Level 1 page , exercises : ___ ", _exercises);
-    setExercises(_exercises);
-    apishow2.start(show2style);
-    console.log(exercises);
-  };
-
-  useEffect(() => {
-    getExercises();
-  }, []);
 
   const show1 = useSpring(show1style);
 
   const [show2, apishow2] = useSpring(() => {});
+
+  useEffect(() => {
+    getExercises("1", "1");
+  }, []);
+
+  console.log("exercises are : ", data);
 
   return (
     <animated.div style={show1}>
@@ -100,17 +86,17 @@ export default function Level1() {
             </div>
           </div>
           <div className="col">
-            {exercises.length > 0 ? (
+            {data.length > 0 ? (
               <animated.div style={show2}>
                 <ul className="list-group">
-                  {exercises.map((exercise, exerciseIndex) => (
+                  {data.map((exercise, exerciseIndex) => (
                     <div
+                      key={exerciseIndex}
                       className="clearfix"
                       style={{ cursor: "pointer", fontSize: "22px" }}
                       onClick={() => {
-                        navigate("/answer-exercises", {
-                          state: { exercises, exerciseIndex },
-                        });
+                        setIndex(exerciseIndex);
+                        navigate("/answer-exercises");
                       }}
                     >
                       <h2 className="text-primary float-end">
@@ -129,9 +115,8 @@ export default function Level1() {
                   className="btn btn-lg btn-outline-success"
                   style={{ fontSize: "22px" }}
                   onClick={() => {
-                    navigate("/answer-exercises", {
-                      state: { exercises },
-                    });
+                    setIndex(0);
+                    navigate("/answer-exercises");
                   }}
                 >
                   انجام دادن تمرین ها
@@ -146,3 +131,5 @@ export default function Level1() {
     </animated.div>
   );
 }
+
+export default Level1;

@@ -1,0 +1,34 @@
+.line {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  margin: 2px;
+}
+
+.input {
+  background-color: rgb(224, 224, 224);
+  border: 1px solid rgb(83, 83, 83);
+  border-radius: 5px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.input:hover {
+  border: 2px solid rgb(222, 222, 0);
+}
+
+.input:focus {
+  border: rgb(191, 191, 0);
+  background-color: rgb(255, 247, 214);
+}
+
+.input-success {
+  background-color: rgb(113, 255, 106);
+  border: 2px solid rgb(70, 255, 60);
+}
+
+.input-fail {
+  background-color: rgb(255, 153, 137);
+  border: 2px solid rgb(255, 106, 83);
+}
