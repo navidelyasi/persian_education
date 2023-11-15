@@ -1,0 +1,22 @@
+.question-container {
+  position: relative;
+}
+
+.list-qs {
+  position: absolute;
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+}
+
+.question-body {
+  width: 80%;
+}
+
+@media (max-width: 800px) {
+  .question-body {
+    width: 100%;
+  }
+}

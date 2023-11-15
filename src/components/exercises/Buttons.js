@@ -40,67 +40,69 @@ export default function Buttons({ handleHelp }) {
 
   return (
     <animated.div style={show1}>
-      <div className="w-75 btn-group btn-group-sm mx-auto">
-        {questions.length > 1 && (
+      <div className="container-fluid d-flex justify-content-center">
+        <div className="w-75 btn-group btn-group-sm mx-auto">
+          {questions.length > 1 && (
+            <button
+              className={
+                qindex > 0
+                  ? "btn btn-outline-primary"
+                  : "btn btn-outline-primary disabled"
+              }
+              onClick={() => {
+                playnotification2();
+                setQIndex(qindex - 1);
+              }}
+            >
+              <img
+                src={back}
+                alt="back"
+                style={{ width: "30px", height: "30px", color: "white" }}
+              />
+            </button>
+          )}
           <button
-            className={
-              qindex > 0
-                ? "btn btn-outline-primary"
-                : "btn btn-outline-primary disabled"
-            }
+            className="btn btn-outline-success"
             onClick={() => {
-              playnotification2();
-              setQIndex(qindex - 1);
+              if (!data[index].questions[qindex].submitted) {
+                handleSubmit();
+              }
             }}
           >
-            <img
-              src={back}
-              alt="back"
-              style={{ width: "30px", height: "30px", color: "white" }}
-            />
+            submit question
           </button>
-        )}
-        <button
-          className="btn btn-outline-success"
-          onClick={() => {
-            if (!data[index].questions[qindex].submitted) {
-              handleSubmit();
-            }
-          }}
-        >
-          submit question
-        </button>
 
-        {handleHelp && (
-          <button
-            className="btn btn-outline-secondary"
-            onClick={() => {
-              playdynamo();
-              handleHelp();
-            }}
-          >
-            help
-          </button>
-        )}
-        {questions.length > 1 && (
-          <button
-            className={
-              qindex < questions.length - 1
-                ? "btn btn-outline-primary"
-                : "btn btn-outline-primary disabled"
-            }
-            onClick={() => {
-              playnotification2();
-              setQIndex(qindex + 1);
-            }}
-          >
-            <img
-              src={next}
-              alt="next"
-              style={{ width: "30px", height: "30px", color: "blue" }}
-            />
-          </button>
-        )}
+          {handleHelp && (
+            <button
+              className="btn btn-outline-secondary"
+              onClick={() => {
+                playdynamo();
+                handleHelp();
+              }}
+            >
+              help
+            </button>
+          )}
+          {questions.length > 1 && (
+            <button
+              className={
+                qindex < questions.length - 1
+                  ? "btn btn-outline-primary"
+                  : "btn btn-outline-primary disabled"
+              }
+              onClick={() => {
+                playnotification2();
+                setQIndex(qindex + 1);
+              }}
+            >
+              <img
+                src={next}
+                alt="next"
+                style={{ width: "30px", height: "30px", color: "blue" }}
+              />
+            </button>
+          )}
+        </div>
       </div>
     </animated.div>
   );

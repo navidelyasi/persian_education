@@ -5,6 +5,7 @@ import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
 import { exerciseStore } from "../../../../database/exercise-store";
 import "../multi.css";
+import "../../general-question-styling.css";
 
 export default function BodyMultiChoice() {
   const { data, index, qindex, setExercises } = exerciseStore();
@@ -21,55 +22,56 @@ export default function BodyMultiChoice() {
 
   return (
     <div className="question-container">
-      <div className="">
+      <div className="list-qs">
         <ListQs />
       </div>
-      <div className="">
-        <animated.div style={show2}>
-          <div className="title">
-            <h1>{questions[qindex].title}</h1>
-          </div>
-          <ul className="list">
-            {questions[qindex].choices.map((choice, choiceIndex) =>
-              questions[qindex].submitted ? (
-                <li
-                  key={choiceIndex}
-                  className={
-                    questions[qindex].choosen === questions[qindex].correct
-                      ? choiceIndex === questions[qindex].choosen
+      <div className="question">
+        <div className="question-body">
+          <animated.div style={show2}>
+            <div className="title">
+              <h1>{questions[qindex].title}</h1>
+            </div>
+            <ul className="list">
+              {questions[qindex].choices.map((choice, choiceIndex) =>
+                questions[qindex].submitted ? (
+                  <li
+                    key={choiceIndex}
+                    className={
+                      questions[qindex].choosen === questions[qindex].correct
+                        ? choiceIndex === questions[qindex].choosen
+                          ? "item item-success"
+                          : "item"
+                        : choiceIndex === questions[qindex].choosen
+                        ? "item item-fail"
+                        : choiceIndex === questions[qindex].correct
                         ? "item item-success"
                         : "item"
-                      : choiceIndex === questions[qindex].choosen
-                      ? "item item-fail"
-                      : choiceIndex === questions[qindex].correct
-                      ? "item item-success"
-                      : "item"
-                  }
-                >
-                  <h5>{choice}</h5>
-                </li>
-              ) : (
-                <li
-                  key={choiceIndex}
-                  className={
-                    choiceIndex === questions[qindex].choosen
-                      ? "item item-selected"
-                      : "item"
-                  }
-                  onClick={() => {
-                    onSelect(choiceIndex);
-                  }}
-                >
-                  <h5>{choice}</h5>
-                </li>
-              )
-            )}
-          </ul>
-          <br />
-          <Buttons />
-        </animated.div>
+                    }
+                  >
+                    <h5>{choice}</h5>
+                  </li>
+                ) : (
+                  <li
+                    key={choiceIndex}
+                    className={
+                      choiceIndex === questions[qindex].choosen
+                        ? "item item-selected"
+                        : "item"
+                    }
+                    onClick={() => {
+                      onSelect(choiceIndex);
+                    }}
+                  >
+                    <h5>{choice}</h5>
+                  </li>
+                )
+              )}
+            </ul>
+            <br />
+            <Buttons />
+          </animated.div>
+        </div>
       </div>
-      <div></div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
 import { exerciseStore } from "../../../../database/exercise-store";
 import "../filling.css";
+import "../../general-question-styling.css";
 
 export default function BodyFillingText() {
   const { data, index, qindex, setExercises } = exerciseStore();
@@ -46,14 +47,18 @@ export default function BodyFillingText() {
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-2 opacity-75">
-          <ListQs />
-        </div>
-        <div className="col-10 shadow p-3 mb-5 bg-body rounded">
+    <div className="question-container">
+      <div className="list-qs">
+        <ListQs />
+      </div>
+      <div className="question">
+        <div className="question-body">
           {questions && (
-            <div className="card" key={questions[qindex].docId}>
+            <div
+              className="card"
+              style={{ zIndex: -1 }}
+              key={questions[qindex].docId}
+            >
               <animated.div style={show2}>
                 <div className="card-body">
                   <div className="clearfix">
