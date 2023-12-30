@@ -5,8 +5,8 @@ import { show2style } from "../../../../data/constants/styles";
 import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
 import { exerciseStore } from "../../../../database/exercise-store";
-import "../filling.css";
-import "../../general-question-styling.css";
+import "../../../css/filling.css";
+import "../../../css/general-question-styling.css";
 
 export default function BodyFillingText() {
   const { data, index, qindex, setExercises } = exerciseStore();

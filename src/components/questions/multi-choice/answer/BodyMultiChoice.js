@@ -5,7 +5,7 @@ import Buttons from "../../../exercises/Buttons";
 import ListQs from "../../ListQs";
 import { exerciseStore } from "../../../../database/exercise-store";
 import "../multi.css";
-import "../../general-question-styling.css";
+import "../../../css/general-question-styling.css";
 
 export default function BodyMultiChoice() {
   const { data, index, qindex, setExercises } = exerciseStore();

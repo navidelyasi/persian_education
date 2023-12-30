@@ -7,6 +7,7 @@ it has several question types:
 2- filling text question
 3- flash card study and answer
 4- drag and drop for text
+5- listening exercise
 
 has sound effects and animations in question and answers.
 

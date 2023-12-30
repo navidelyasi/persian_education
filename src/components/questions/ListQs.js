@@ -2,7 +2,7 @@ import React from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { show1style } from "../../data/constants/styles";
 import { exerciseStore } from "../../database/exercise-store";
-import "./ListQs.css";
+import "./../css/ListQs.css";
 
 export default function ListQs() {
   const { data, index, qindex, setQIndex } = exerciseStore();
